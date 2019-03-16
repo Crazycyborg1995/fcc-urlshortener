@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="shortcut icon"
+      href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link href="/public/style.css" rel="stylesheet" type="text/css" />
+    <title>URL Shortener</title>
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h2 class="display-6">API Project: URL Shortener Microservice</h2>
+
+      <form action="/api/shorturl/new" class="form-inline" method="POST">
+        <label for="url">URL to be shortened:</label>
+        <input
+          type="url"
+          class="form-control mr-3"
+          id="url"
+          placeholder="http://www.freecodecamp.org"
+          name="url"
+        />
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+      <h3>Example Usage:</h3>
+      <a href="https://shorturl-creator.herokuapp.com/api/shorturl/1">
+        https://shorturl-creator.herokuapp.com/api/shorturl/1
+      </a>
+
+      <h3>Will Redirect to:</h3>
+      <p>https://www.medium.com</p>
+    </div>
+  </body>
+</html>
