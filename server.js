@@ -80,7 +80,7 @@ app.post('/api/shorturl/new', async (req, res) => {
         .save()
         .then(url => {
           if (url) {
-            res.status(200).send({ url, id });
+            return res.status(200).send({ url, id });
           }
           res.status(401).json({ error: 'Something went wrong' });
         })
