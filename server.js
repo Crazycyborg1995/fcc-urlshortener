@@ -16,7 +16,7 @@ if (env === 'development') {
   console.log('Logged in.........');
 } else if (env === 'production') {
   process.env.MONGODB_URI =
-    'mongodb+srv://afsal:tG4gAAzGEGGXQ4Yk@test-bxj9a.mongodb.net/test?retryWrites=true';
+    'mongodb+srv://afsal:12345678@test-bxj9a.mongodb.net/test?retryWrites=true';
 }
 
 /** this project needs a db !! **/
@@ -76,13 +76,16 @@ app.post('/api/shorturl/new', async (req, res) => {
         url,
         id
       });
-      newUrl.save().then(url => {
-        if (url) {
-          return res.status(200).send({ url, id });
-        } else {
-          res.status(400).json({ error: 'Something went wrong' });
-        }
-      });
+      newUrl
+        .save()
+        .then(url => {
+          if (url) {
+            return res.status(200).send({ url, id });
+          } else {
+            res.status(400).json({ error: 'Something went wrong' });
+          }
+        })
+        .catch(err => res.status(401).json({ error: 'Something went wrong' }));
     }
   });
 });
