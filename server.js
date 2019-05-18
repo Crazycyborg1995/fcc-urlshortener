@@ -18,6 +18,8 @@ if (env === 'development') {
   process.env.MONGODB_URI =
     'mongodb+srv://afsal:WK4bOPCNc8mqG7bc@url-shortener-kyl2c.mongodb.net/test?retryWrites=true';
 }
+
+console.log('port', port);
 console.log('processnodeenv', env);
 console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
 
