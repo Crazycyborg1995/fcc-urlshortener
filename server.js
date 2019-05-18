@@ -80,13 +80,16 @@ app.post('/api/shorturl/new', async (req, res) => {
         url,
         id
       });
-      newUrl.save().then(url => {
-        if (url) {
-          return res.status(200).send({ url, id });
-        } else {
-          res.status(400).json({ error: 'Something went wrong' });
-        }
-      });
+      newUrl
+        .save()
+        .then(url => {
+          if (url) {
+            return res.status(200).send({ url, id });
+          } else {
+            res.status(400).json({ error: 'Something went wrong' });
+          }
+        })
+        .catch(err => res.status(401).json({ error: 'Unauthorized request' }));
     }
   });
 });
