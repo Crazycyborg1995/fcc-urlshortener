@@ -18,6 +18,8 @@ if (env === 'development') {
   process.env.MONGODB_URI =
     'mongodb+srv://afsal:34eXQOtWWJgcizxE@test-bxj9a.mongodb.net/test?retryWrites=true';
 }
+console.log('processnodeenv', env);
+console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
 
 /** this project needs a db !! **/
 mongoose.Promise = global.Promise;
