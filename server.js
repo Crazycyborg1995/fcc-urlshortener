@@ -16,7 +16,7 @@ if (env === 'development') {
   console.log('Logged in.........');
 } else if (env === 'production') {
   process.env.MONGODB_URI =
-    'mongodb+srv://afsal:34eXQOtWWJgcizxE@test-bxj9a.mongodb.net/test?retryWrites=true';
+    'mongodb+srv://afsal:WK4bOPCNc8mqG7bc@url-shortener-kyl2c.mongodb.net/test?retryWrites=true';
 }
 console.log('processnodeenv', env);
 console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
