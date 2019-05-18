@@ -59,13 +59,12 @@ app.get('/', function(req, res) {
 
 // POST '/new' Route
 // ==========================
-app.post('/api/shorturl/new', (req, res) => {
+app.post('/api/shorturl/new', async (req, res) => {
   let url = req.body.url;
   let validateUrl = url.replace(/^https?:\/\//i, '');
-  let id;
-  Url.find()
-    .then(docs => (id = docs.length))
-    .catch(err => console.log(err));
+  let id = await Url.find()
+    .then(docs => docs.length)
+    .catch(err => null);
 
   // validate url
   dns.lookup(validateUrl, err => {
@@ -77,26 +76,35 @@ app.post('/api/shorturl/new', (req, res) => {
         url,
         id
       });
-      newUrl.save().then(
-        url => {
-          res.status(200).send({ url, id });
-        },
-        err => res.status(400).send(err)
-      );
+      newUrl
+        .save()
+        .then(url => {
+          if (url) {
+            res.status(200).send({ url, id });
+          }
+          res.status(401).json({ error: 'Something went wrong' });
+        })
+        .catch(err => res.status(401).json({ error: 'Something went wrong' }));
     }
   });
 });
 
 // GET '/:id' Route
 // ==========================
-app.get('/api/shorturl/:id', (req, res) => {
-  Url.find({ id: req.params.id }).then(
-    url => {
-      console.log(url);
-      res.status(200).redirect(url[0].url);
-    },
-    err => res.status(400).json({ error: 'invalid id' })
-  );
+app.get('/api/shorturl/:id', async (req, res) => {
+  let url = await Url.find({ id: req.params.id })
+    .then(url => {
+      if (url) {
+        return url[0].url;
+      }
+      return false;
+    })
+    .catch(err => null);
+
+  if (url) {
+    return res.status(200).redirect(url);
+  }
+  res.status(200).json({ error: 'Invalid ID' });
 });
 
 // Listen to port
